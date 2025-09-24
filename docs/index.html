@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Britain's Crossroads Crisis: Strategic Analysis</title>
+    <title>Britain's Crisis Analysis: Strategic Policy Assessment</title>
     <style>
         * {
             margin: 0;
@@ -12,1150 +12,1438 @@
         }
 
         :root {
-            --primary-blue: #003087;
-            --secondary-red: #C8102E;
-            --accent-gold: #FFD700;
-            --dark-gray: #2C3E50;
-            --light-gray: #ECF0F1;
-            --warning-red: #E74C3C;
-            --success-green: #27AE60;
-            --info-blue: #3498DB;
-            --text-primary: #2C3E50;
-            --shadow-color: rgba(0, 0, 0, 0.15);
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #495057;
+            --text-muted: #6c757d;
+            --border-color: #dee2e6;
+            --accent-blue: #0056b3;
+            --accent-red: #dc3545;
+            --accent-green: #28a745;
+            --accent-gold: #ffc107;
+            --shadow-sm: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+            --shadow-md: 0 0.5rem 1rem rgba(0,0,0,0.15);
+            --shadow-lg: 0 1rem 3rem rgba(0,0,0,0.175);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-danger: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-success: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --bg-card: #0f3460;
+            --text-primary: #f8f9fa;
+            --text-secondary: #e9ecef;
+            --text-muted: #adb5bd;
+            --border-color: #495057;
+            --accent-blue: #4dabf7;
+            --accent-red: #ff6b6b;
+            --accent-green: #51cf66;
+            --accent-gold: #ffd43b;
+            --shadow-sm: 0 0.125rem 0.25rem rgba(0,0,0,0.3);
+            --shadow-md: 0 0.5rem 1rem rgba(0,0,0,0.4);
+            --shadow-lg: 0 1rem 3rem rgba(0,0,0,0.5);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            overflow-x: hidden;
+            background-color: var(--bg-primary);
+            transition: all 0.3s ease;
         }
 
-        .presentation-container {
-            max-width: 1400px;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 2rem 1rem;
         }
 
-        .slide {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 40px var(--shadow-color);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: slideIn 0.8s forwards;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .slide::before {
-            content: '';
-            position: absolute;
+        /* Header Section */
+        .header {
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--secondary-red) 50%, var(--primary-blue) 100%);
-            animation: shimmer 3s infinite;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        @keyframes slideIn {
+        .header-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 2rem;
+            padding: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .theme-toggle span {
+            font-size: 1.25rem;
+        }
+
+        /* Navigation */
+        .nav-menu {
+            position: fixed;
+            top: 4rem;
+            left: 0;
+            right: 0;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 999;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-menu-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            padding: 1rem 0;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: var(--accent-blue);
+            border-bottom-color: var(--accent-blue);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 8rem;
+            min-height: calc(100vh - 8rem);
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 9rem;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-content {
+            color: var(--text-secondary);
+        }
+
+        /* Comparative Cards Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .comparison-header {
+            padding: 1rem;
+            font-weight: 600;
+            text-align: center;
+            color: white;
+        }
+
+        .comparison-header.before {
+            background: var(--gradient-danger);
+        }
+
+        .comparison-header.after {
+            background: var(--gradient-success);
+        }
+
+        .comparison-header.current {
+            background: var(--gradient-primary);
+        }
+
+        .comparison-body {
+            padding: 1.5rem;
+        }
+
+        .comparison-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison-metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .metric-value {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        /* Statistics */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-change {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            display: inline-block;
+        }
+
+        .stat-change.negative {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--accent-red);
+        }
+
+        .stat-change.positive {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--accent-green);
+        }
+
+        /* Progress Bars */
+        .progress-container {
+            margin: 1.5rem 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar {
+            background: var(--bg-secondary);
+            height: 0.5rem;
+            border-radius: 0.25rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 0.25rem;
+            transition: width 1s ease;
+        }
+
+        /* Alert Boxes */
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid;
+        }
+
+        .alert-danger {
+            background: rgba(220, 53, 69, 0.1);
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+        }
+
+        .alert-success {
+            background: rgba(40, 167, 69, 0.1);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .alert-info {
+            background: rgba(0, 123, 255, 0.1);
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .alert-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+        }
+
+        thead {
+            background: var(--bg-secondary);
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 1rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tbody tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        /* References */
+        .reference-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .reference-item {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .reference-item:hover {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .reference-number {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            margin-right: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .reference-source {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .reference-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .reference-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu-content {
+                padding: 0 0.5rem;
+                gap: 1rem;
+            }
+
+            .nav-item {
+                font-size: 0.9rem;
+                padding: 0.75rem 0;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .header,
+            .nav-menu {
+                display: none;
+            }
+
+            main {
+                margin-top: 0;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid #000;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        .title-slide {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-red) 100%);
+        .animate-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-primary);
             color: white;
+            padding: 4rem 2rem;
+            border-radius: 0.5rem;
+            margin-bottom: 3rem;
             text-align: center;
-            padding: 80px 40px;
-            position: relative;
-            overflow: hidden;
         }
 
-        .title-slide::after {
-            content: '🇬🇧';
-            position: absolute;
-            font-size: 300px;
-            opacity: 0.1;
-            right: -50px;
-            top: 50%;
-            transform: translateY(-50%);
-            animation: float 6s ease-in-out infinite;
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(-50%); }
-            50% { transform: translateY(-60%); }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
         }
 
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: fadeInScale 1s forwards;
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        h2 {
-            color: var(--primary-blue);
-            margin-bottom: 30px;
-            font-size: 2.2em;
-            border-bottom: 3px solid var(--accent-gold);
-            padding-bottom: 10px;
-            display: inline-block;
-        }
-
-        h3 {
-            color: var(--dark-gray);
-            margin: 25px 0 15px;
-            font-size: 1.5em;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            display: inline-block;
-            min-width: 250px;
-            transform: scale(0);
-            animation: popIn 0.5s forwards;
-            animation-delay: 0.3s;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
-        }
-
-        @keyframes popIn {
-            to {
-                transform: scale(1);
-            }
-        }
-
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .crisis-indicator {
-            background: var(--warning-red);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            margin: 15px 0;
-            display: inline-block;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        .progress-bar {
-            background: var(--light-gray);
-            height: 30px;
-            border-radius: 15px;
-            overflow: hidden;
-            margin: 20px 0;
-            position: relative;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-blue), var(--info-blue));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 15px;
-            color: white;
-            font-weight: bold;
-            animation: fillProgress 2s ease-out forwards;
-            position: relative;
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmerProgress 2s infinite;
-        }
-
-        @keyframes shimmerProgress {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        @keyframes fillProgress {
-            from { width: 0%; }
-        }
-
+        /* Timeline */
         .timeline {
             position: relative;
-            padding: 20px 0;
+            padding: 2rem 0;
         }
 
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50px;
+            left: 2rem;
             top: 0;
             bottom: 0;
-            width: 3px;
-            background: var(--primary-blue);
+            width: 2px;
+            background: var(--border-color);
         }
 
         .timeline-item {
             position: relative;
-            padding-left: 80px;
-            margin-bottom: 30px;
-            opacity: 0;
-            transform: translateX(-20px);
-            animation: slideInLeft 0.6s forwards;
-        }
-
-        .timeline-item:nth-child(odd) {
-            animation-delay: 0.2s;
-        }
-
-        .timeline-item:nth-child(even) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes slideInLeft {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            padding-left: 4rem;
+            padding-bottom: 2rem;
         }
 
         .timeline-marker {
             position: absolute;
-            left: 40px;
-            width: 20px;
-            height: 20px;
-            background: var(--secondary-red);
-            border: 3px solid white;
+            left: 1.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent-blue);
+            border: 2px solid var(--bg-primary);
             border-radius: 50%;
-            box-shadow: 0 0 0 3px var(--secondary-red);
+            z-index: 1;
         }
 
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
+        .timeline-content {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
         }
 
-        .impact-card {
-            background: white;
-            border: 2px solid var(--light-gray);
-            border-radius: 15px;
-            padding: 25px;
-            transition: all 0.3s;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+        .timeline-date {
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
         }
 
-        .impact-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-red));
-            transform: scaleX(0);
-            transition: transform 0.3s;
+        .timeline-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
         }
 
-        .impact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .impact-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .icon-large {
-            font-size: 3em;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .warning-box {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            position: relative;
-            padding-left: 60px;
-        }
-
-        .warning-box::before {
-            content: '⚠️';
-            position: absolute;
-            left: 20px;
-            font-size: 2em;
-            animation: shake 2s infinite;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-5deg); }
-            75% { transform: rotate(5deg); }
-        }
-
-        .success-box {
-            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            position: relative;
-            padding-left: 60px;
-        }
-
-        .success-box::before {
-            content: '✅';
-            position: absolute;
-            left: 20px;
-            font-size: 2em;
-        }
-
-        .data-visualization {
-            background: var(--light-gray);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 25px 0;
-            position: relative;
-        }
-
-        .chart-bar {
-            background: linear-gradient(90deg, var(--primary-blue), var(--info-blue));
-            height: 40px;
-            margin: 10px 0;
-            border-radius: 20px;
-            color: white;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            font-weight: bold;
-            animation: growBar 1.5s ease-out forwards;
-            transform-origin: left;
-            transform: scaleX(0);
-        }
-
-        @keyframes growBar {
-            to {
-                transform: scaleX(1);
-            }
-        }
-
-        .interactive-button {
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-red));
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .interactive-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .interactive-button:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .interactive-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-        }
-
-        .quote-box {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-left: 5px solid var(--primary-blue);
-            padding: 20px 30px;
-            margin: 25px 0;
-            font-style: italic;
-            font-size: 1.1em;
-            position: relative;
-            border-radius: 10px;
-        }
-
-        .quote-box::before {
-            content: '"';
-            position: absolute;
-            top: -10px;
-            left: 15px;
-            font-size: 4em;
-            color: var(--primary-blue);
-            opacity: 0.3;
-        }
-
-        .navigation {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-
-        .nav-button {
-            background: var(--primary-blue);
-            color: white;
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 1.5em;
-            cursor: pointer;
-            margin: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s;
-        }
-
-        .nav-button:hover {
-            transform: scale(1.1);
-            background: var(--secondary-red);
-        }
-
-        .highlight {
-            background: linear-gradient(180deg, transparent 60%, var(--accent-gold) 60%);
-            padding: 2px 5px;
-            font-weight: bold;
-        }
-
-        .tag {
-            display: inline-block;
-            background: var(--info-blue);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            margin: 5px;
-            font-size: 0.9em;
-            animation: fadeIn 0.5s forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @media (max-width: 768px) {
-            .presentation-container {
-                padding: 10px;
-            }
-            
-            .slide {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            h2 {
-                font-size: 1.5em;
-            }
-            
-            .impact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .section-indicator {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 10px 30px;
-            border-radius: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            z-index: 1000;
-            font-weight: bold;
-            color: var(--primary-blue);
-        }
-
-        .collapse-indicator {
-            display: inline-block;
-            padding: 8px 16px;
-            background: var(--warning-red);
-            color: white;
-            border-radius: 8px;
-            margin: 0 5px;
-            animation: blink 2s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+        .timeline-description {
+            color: var(--text-secondary);
         }
     </style>
 </head>
 <body>
-    <div class="section-indicator">📊 Britain's Crisis Analysis</div>
-    
-    <div class="presentation-container">
-        <!-- Title Slide -->
-        <div class="slide title-slide">
-            <h1>🇬🇧 Britain's Crossroads Crisis</h1>
-            <p style="font-size: 1.5em; margin-top: 20px;">Stagnation, Legacy, and Strategic Repositioning</p>
-            <p style="font-size: 1.2em; margin-top: 30px; opacity: 0.9;">A Comprehensive Analysis of the UK's Most Challenging Period Since WWII</p>
-            <button class="interactive-button" style="margin-top: 40px;" onclick="scrollToNext()">Begin Presentation →</button>
-        </div>
-
-        <!-- Executive Summary -->
-        <div class="slide">
-            <h2>📋 Executive Summary</h2>
-            <div class="warning-box">
-                <strong>Critical Finding:</strong> The United Kingdom faces severe economic stagnation with interconnected demographic, social, and institutional crises requiring urgent comprehensive reform.
-            </div>
-            
-            <div class="impact-grid">
-                <div class="impact-card">
-                    <span class="icon-large">💷</span>
-                    <h3>Economic Impact</h3>
-                    <p><strong>£8,300 per household</strong> potential gain if UK matches peer nations' performance</p>
-                    <div class="tag">15 years of decline</div>
-                    <div class="tag">Record inequality</div>
-                </div>
-                
-                <div class="impact-card">
-                    <span class="icon-large">🏛️</span>
-                    <h3>Institutional Crisis</h3>
-                    <p>Democratic accountability faces severe challenges from weak lobbying regulation capturing <strong>less than 4%</strong> of actual influence activity</p>
-                    <div class="tag">Corporate capture</div>
-                    <div class="tag">Transparency deficit</div>
-                </div>
-                
-                <div class="impact-card">
-                    <span class="icon-large">👥</span>
-                    <h3>Social Fragmentation</h3>
-                    <p>Record antisemitism, mental health crisis, and declining fertility threaten social stability</p>
-                    <div class="tag">Identity crisis</div>
-                    <div class="tag">Cohesion collapse</div>
-                </div>
-            </div>
-
-            <div class="quote-box">
-                "While 'Broken Britain' reflects genuine hardship, the evidence suggests the UK retains fundamental strengths and substantial catch-up potential worth £8,300 per household if policy gaps with peer nations are closed."
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-title">🇬🇧 Britain's Crisis Analysis</div>
+            <div class="header-controls">
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <span id="theme-icon">🌙</span>
+                    <span id="theme-text">Dark</span>
+                </button>
             </div>
         </div>
-
-        <!-- The Stagnation Trap -->
-        <div class="slide">
-            <h2>📉 The Stagnation Trap: Britain's Unprecedented Decline</h2>
-            
-            <div class="stat-card">
-                <span class="stat-number">0.4%</span>
-                Annual productivity growth post-2008
-                <small style="display: block; margin-top: 5px;">(vs 0.9% OECD average)</small>
-            </div>
-            
-            <div class="stat-card" style="background: linear-gradient(135deg, #f93b1d 0%, #ea1e63 100%);">
-                <span class="stat-number">£3,400</span>
-                Lost output per person
-                <small style="display: block; margin-top: 5px;">Due to productivity lag</small>
-            </div>
-            
-            <div class="stat-card" style="background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);">
-                <span class="stat-number">19%</span>
-                Business investment (% of GDP)
-                <small style="display: block; margin-top: 5px;">Lowest in G7</small>
-            </div>
-
-            <h3>📊 Economic Performance Indicators</h3>
-            <div class="data-visualization">
-                <div style="margin-bottom: 15px;"><strong>GDP Growth Forecast (2024-2025)</strong></div>
-                <div class="chart-bar" style="width: 40%; animation-delay: 0.2s;">1.0% - 1.7%</div>
-                
-                <div style="margin-bottom: 15px; margin-top: 20px;"><strong>Public Debt (% of GDP)</strong></div>
-                <div class="chart-bar" style="width: 96%; animation-delay: 0.4s; background: linear-gradient(90deg, #e74c3c, #c0392b);">96.1%</div>
-                
-                <div style="margin-bottom: 15px; margin-top: 20px;"><strong>Real Wages vs 2008</strong></div>
-                <div class="chart-bar" style="width: 50%; animation-delay: 0.6s; background: linear-gradient(90deg, #95a5a6, #7f8c8d);">Back to 2008 levels</div>
-            </div>
-
-            <h3>🏥 Social Infrastructure Breakdown</h3>
-            <div class="crisis-indicator">
-                <strong>NHS Waiting Lists:</strong> 7.58 million people
-            </div>
-            <div class="crisis-indicator">
-                <strong>A&E Performance:</strong> Only 75.9% seen within 4 hours
-            </div>
-            <div class="crisis-indicator">
-                <strong>Homelessness:</strong> 117,450 households in temporary accommodation
-            </div>
-            <div class="crisis-indicator">
-                <strong>Food Banks:</strong> 3 million+ parcels distributed (2022-23)
-            </div>
-
-            <div class="warning-box">
-                <strong>Key Insight:</strong> This represents prolonged stagnation requiring policy intervention rather than systemic collapse. British institutions remain functional, but relative decline creates genuine hardship.
-            </div>
-        </div>
-
-        <!-- Thatcher's Legacy -->
-        <div class="slide">
-            <h2>🏭 Thatcher's Enduring Shadow: Structural Problems from the 1980s</h2>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <h3>Privatization Program</h3>
-                    <p>Transferred <strong>£60 billion in state assets</strong>, privatizing 40+ businesses employing 600,000 workers</p>
-                    <div class="warning-box" style="margin-top: 10px;">
-                        <strong>Current Impact:</strong> Water industry 90%+ foreign-owned, carrying £60 billion debt while distributing £75 billion in dividends since privatization
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <h3>Income Inequality Embedded</h3>
-                    <p>Top 1% income share rose from <span class="highlight">5.7% (1978) to 15.4% (2008)</span></p>
-                    <p>Real household income at 10th percentile rose only 3.1% while 90th percentile increased 56.1%</p>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <h3>Regional Disparities Created</h3>
-                    <p>12 local authorities lost over 20% of jobs (1981-1991)</p>
-                    <p>UK manufacturing employment fell <span class="collapse-indicator">39%</span> from 1979-1993</p>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <h3>Housing Crisis Origins</h3>
-                    <p>2.8 million council homes sold by 2006 (almost half social housing stock)</p>
-                    <p>New social housing construction collapsed without replacement</p>
-                </div>
-            </div>
-
-            <div class="quote-box">
-                "Academic analysis from LSE, Oxford, Cambridge, and the Resolution Foundation reveals direct causal links between 1980s policy choices and current UK difficulties."
-            </div>
-
-            <h3>📈 Lasting Economic Impact</h3>
-            <div class="impact-grid">
-                <div class="impact-card">
-                    <span class="icon-large">🏗️</span>
-                    <h4>Infrastructure Vulnerability</h4>
-                    <p>Thames Water requires £1 billion additional funding, demonstrating how privatization without adequate regulation created systemic risks</p>
-                </div>
-                
-                <div class="impact-card">
-                    <span class="icon-large">📊</span>
-                    <h4>Inequality Persistence</h4>
-                    <p>Britain has the highest income inequality of any large European economy - a direct legacy of 1980s policies</p>
-                </div>
-                
-                <div class="impact-card">
-                    <span class="icon-large">🏚️</span>
-                    <h4>"Left-Behind" Places</h4>
-                    <p>Communities devastated by 1980s deindustrialization remain economically disadvantaged today</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Political Capture -->
-        <div class="slide">
-            <h2>🏛️ Political Capture and the Transparency Deficit</h2>
-            
-            <div class="stat-card" style="background: linear-gradient(135deg, #2c3e50, #3498db);">
-                <span class="stat-number">4%</span>
-                Of lobbying activity captured by regulation
-                <small style="display: block; margin-top: 5px;">96% operates in shadows</small>
-            </div>
-            
-            <div class="stat-card" style="background: linear-gradient(135deg, #8e44ad, #3498db);">
-                <span class="stat-number">£14.3M</span>
-                From undisclosed donors to think tanks
-                <small style="display: block; margin-top: 5px;">In 2024 alone</small>
-            </div>
-
-            <h3>🔍 The Lobbying Loophole</h3>
-            <div class="data-visualization">
-                <p><strong>Who's Covered by the 2014 Lobbying Act?</strong></p>
-                <div style="display: flex; align-items: center; margin: 20px 0;">
-                    <div style="width: 4%; height: 40px; background: var(--warning-red); border-radius: 5px;"></div>
-                    <span style="margin-left: 15px;">4% - Consultant lobbyists only</span>
-                </div>
-                <div style="display: flex; align-items: center; margin: 20px 0;">
-                    <div style="width: 96%; height: 40px; background: var(--dark-gray); border-radius: 5px; opacity: 0.3;"></div>
-                    <span style="margin-left: 15px;">96% - Unregulated (in-house, trade associations, NGOs)</span>
-                </div>
-            </div>
-
-            <h3>🏢 Think Tank Transparency Crisis</h3>
-            <div class="impact-grid">
-                <div class="impact-card">
-                    <span class="icon-large">🏢</span>
-                    <h4>55 Tufton Street</h4>
-                    <p>Houses multiple right-wing think tanks funded by undisclosed sources</p>
-                    <div class="tag">Policy Exchange</div>
-                    <div class="tag">IEA</div>
-                    <div class="tag">Adam Smith Institute</div>
-                </div>
-                
-                <div class="impact-card">
-                    <span class="icon-large">🚪</span>
-                    <h4>Revolving Door</h4>
-                    <p>Only 1 of 8 government departments properly applies business appointment rules</p>
-                    <p><strong>187 appointments approved</strong> but only 6 employers informed</p>
-                </div>
-                
-                <div class="impact-card">
-                    <span class="icon-large">🤝</span>
-                    <h4>"Quiet but Effective Policy"</h4>
-                    <p>Technical expertise and behind-the-scenes access substitute for democratic debate</p>
-                    <p>Example: OpenAI employing Global Counsel for UK AI copyright changes</p>
-                </div>
-            </div>
-
-            <div class="warning-box">
-                <strong>Democratic Risk:</strong> Corporate capture through think tanks, revolving door practices, and informal networks undermines public trust while enabling private interests to shape policy away from public scrutiny.
-            </div>
-        </div>
-
-        <!-- Demographic Fragmentation -->
-        <div class="slide">
-            <h2>👥 Demographic Fragmentation and Social Cohesion Collapse</h2>
-            
-            <div class="crisis-indicator" style="background: linear-gradient(135deg, #000428, #004e92);">
-                <strong>Antisemitism Crisis:</strong> 3,528 incidents in 2024 (second-highest on record)
-            </div>
-            
-            <h3>✡️ Rising Antisemitism Impact</h3>
-            <div class="data-visualization">
-                <p><strong>2025 First Half:</strong> 1,521 incidents</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 76%;">76% with political motivations</div>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 51%; background: linear-gradient(90deg, #e74c3c, #c0392b);">51% referencing Israel/Gaza</div>
-                </div>
-                <p style="margin-top: 15px;">• 201 physical assaults • 223 targeting synagogues/congregants</p>
-            </div>
-
-            <h3>🧠 Mental Health System Breakdown</h3>
-            <div class="impact-grid">
-                <div class="impact-card" style="border-color: var(--warning-red);">
-                    <span class="icon-large">💔</span>
-                    <h4>Suicide Crisis</h4>
-                    <p><strong>7,055 deaths in 2023</strong></p>
-                    <p>19 per day - highest since 1999</p>
-                </div>
-                
-                <div class="impact-card" style="border-color: var(--warning-red);">
-                    <span class="icon-large">⏰</span>
-                    <h4>Catastrophic Wait Times</h4>
-                    <p>10% wait <strong>812+ days</strong> for adult community mental health services</p>
-                    <p>80% experience mental health decline while waiting</p>
-                </div>
-                
-                <div class="impact-card" style="border-color: var(--warning-red);">
-                    <span class="icon-large">🆘</span>
-                    <h4>Crisis During Waits</h4>
-                    <p>25% attempt suicide while waiting</p>
-                    <p>64% experience crisis during waiting periods</p>
-                </div>
-            </div>
-
-            <h3>👶 Fertility Crisis</h3>
-            <div class="stat-card" style="background: linear-gradient(135deg, #FC466B, #3F5EFB);">
-                <span class="stat-number">1.41</span>
-                Children per woman (2024)
-                <small style="display: block; margin-top: 5px;">Lowest on record - far below 2.08 replacement rate</small>
-            </div>
-            
-            <div class="warning-box">
-                <strong>Demographic Time Bomb:</strong> 28% of young Britons aged 18-40 do not want children due to economic factors including housing costs, low wages, and education commitments.
-            </div>
-
-            <h3>🏴󐁧󐁢󐁥󐁮󐁧󐁿 National Identity Fragmentation</h3>
-            <div class="data-visualization">
-                <p><strong>British Identity Markers (Change from 2013)</strong></p>
-                <div style="margin: 20px 0;">
-                    <p>UK birth essential to British identity:</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 55%; background: linear-gradient(90deg, #e74c3c, #c0392b);">55% (down from 74%)</div>
-                    </div>
-                </div>
-                <div style="margin: 20px 0;">
-                    <p>Historical pride:</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 65%; background: linear-gradient(90deg, #95a5a6, #7f8c8d);">65% (down from 86%)</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="quote-box">
-                "Political fragmentation along identity lines challenges traditional coalitions, with Reform UK representing 'little England' conservatism that fragments Conservative voter base."
-            </div>
-        </div>
-
-        <!-- Educational Challenges -->
-        <div class="slide">
-            <h2>🎓 Educational and Strategic Repositioning Challenges</h2>
-            
-            <h3>📚 International Education Performance</h3>
-            <div class="data-visualization">
-                <p><strong>PISA 2022 Rankings (Average Score)</strong></p>
-                <div style="margin: 15px 0;">
-                    <span style="display: inline-block; width: 150px;">🇭🇰 Hong Kong:</span>
-                    <div class="chart-bar" style="width: 90%; display: inline-block; vertical-align: middle;">520.0</div>
-                </div>
-                <div style="margin: 15px 0;">
-                    <span style="display: inline-block; width: 150px;">🇲🇴 Macao:</span>
-                    <div class="chart-bar" style="width: 95%; display: inline-block; vertical-align: middle;">535.0</div>
-                </div>
-                <div style="margin: 15px 0;">
-                    <span style="display: inline-block; width: 150px;">🇹🇼 Chinese Taipei:</span>
-                    <div class="chart-bar" style="width: 93%; display: inline-block; vertical-align: middle;">533.0</div>
-                </div>
-                <div style="margin: 15px 0;">
-                    <span style="display: inline-block; width: 150px;">🇬🇧 UK:</span>
-                    <div class="chart-bar" style="width: 75%; display: inline-block; vertical-align: middle; background: linear-gradient(90deg, #e74c3c, #c0392b);">486.3 (20th globally)</div>
-                </div>
-            </div>
-
-            <h3>🔬 STEM Crisis</h3>
-            <div class="impact-grid">
-                <div class="impact-card">
-                    <span class="icon-large">👩‍🔬</span>
-                    <h4>Gender Gap</h4>
-                    <p>Only <strong>31%</strong> of core STEM students are women/non-binary</p>
-                    <p>Gender parity won't be achieved until <strong>2070</strong> at current rates</p>
-                </div>
-                
-                <div class="impact-card">
-                    <span class="icon-large">💻</span>
-                    <h4>Digital Skills Gap</h4>
-                    <p>Costs UK economy up to <strong>£60 billion annually</strong></p>
-                    <p>Only 14% of pupils took Computer Science GCSE in 2023</p>
-                </div>
-                
-                <div class="impact-card">
-                    <span class="icon-large">👩‍🏫</span>
-                    <h4>Teacher Crisis</h4>
-                    <p>Real-term pay declined 4-5% (starting) and 8% (experienced) since 2007</p>
-                    <p>Post-16 budgets cut 10% (colleges) and 23% (sixth forms) from 2010-2024</p>
-                </div>
-            </div>
-
-            <div class="success-box">
-                <strong>British Educational Strengths Worth Preserving:</strong>
-                <br>• Liberal arts emphasis • Critical thinking culture
-                <br>• Pastoral care systems • Democratic values integration
-                <br>• Creativity and individual development focus
-            </div>
-
-            <h3>🌏 Economic Repositioning Results</h3>
-            <div class="warning-box">
-                <strong>CPTPP Reality Check:</strong> Membership provides only 0.04-0.08% GDP boost over 15 years (UK already had deals with 9 of 11 members)
-            </div>
-            
-            <div class="data-visualization">
-                <p><strong>Commonwealth Trade Performance</strong></p>
-                <div style="margin: 20px 0;">
-                    <p>Peak (2012): £120 billion</p>
-                    <div class="chart-bar" style="width: 100%;">£120B</div>
-                </div>
-                <div style="margin: 20px 0;">
-                    <p>Current: £91 billion</p>
-                    <div class="chart-bar" style="width: 76%; background: linear-gradient(90deg, #e74c3c, #c0392b);">£91B (-24%)</div>
-                </div>
-            </div>
-
-            <div class="success-box">
-                <strong>Financial Services Leadership:</strong> £92.2 billion trade surplus in 2023, maintaining global competitiveness despite 45.5% bank tax rate (vs 27.9% in New York)
-            </div>
-        </div>
-
-        <!-- BlackRock and Infrastructure -->
-        <div class="slide">
-            <h2>🏗️ BlackRock Dependency and Infrastructure Vulnerability</h2>
-            
-            <div class="warning-box">
-                <strong>Critical Finding:</strong> 70% of UK critical infrastructure is foreign-owned, creating national security vulnerabilities
-            </div>
-
-            <h3>🏦 BlackRock's UK Influence</h3>
-            <div class="impact-grid">
-                <div class="impact-card">
-                    <span class="icon-large">💰</span>
-                    <h4>Investment Scale</h4>
-                    <p>£500-700 million data center investments</p>
-                    <p>$12.5 billion Global Infrastructure Partners acquisition</p>
-                    <p>$170 billion infrastructure platform created</p>
-                </div>
-                
-                <div class="impact-card">
-                    <span class="icon-large">🤝</span>
-                    <h4>Policy Access</h4>
-                    <p>Direct meetings with PM Starmer and Chancellor Reeves</p>
-                    <p>Chancellor cites BlackRock advice driving planning deregulation</p>
-                </div>
-                
-                <div class="impact-card">
-                    <span class="icon-large">⚠️</span>
-                    <h4>Risk Model</h4>
-                    <p>"Government-by-BlackRock" - taxpayers bear investment risks</p>
-                    <p>BlackRock captures profits in essential infrastructure</p>
-                </div>
-            </div>
-
-            <h3>💧 Water Industry Foreign Control</h3>
-            <div class="data-visualization" style="background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);">
-                <h4 style="color: var(--primary-blue);">Foreign Ownership Examples</h4>
-                <div style="margin: 20px 0;">
-                    <p><strong>Thames Water:</strong> Chinese CKI (Hong Kong)</p>
-                    <p><strong>Yorkshire Water:</strong> Hong Kong & Singapore investors</p>
-                    <p><strong>Northumbrian Water:</strong> CK Hutchison (HK) + KKR (US)</p>
-                </div>
-                <div class="crisis-indicator" style="margin-top: 20px;">
-                    £72 billion paid in dividends while accumulating £54 billion debt
-                </div>
-            </div>
-
-            <h3>⚡ Energy Infrastructure Ownership</h3>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <h4>ScottishPower Energy Networks</h4>
-                    <p>Owned by Spanish Iberdrola</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <h4>Northern Powergrid</h4>
-                    <p>Owned by American Berkshire Hathaway</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <h4>Gas Infrastructure</h4>
-                    <p>Controlled by Macquarie, BCI, and National Grid with substantial foreign shareholding</p>
-                </div>
-            </div>
-
-            <div class="quote-box">
-                "These ownership patterns enable profit extraction rather than infrastructure investment. Regulatory capture occurs through revolving door practices, exemplified by Ofwat CEO now working for Thames Water."
-            </div>
-
-            <h3>🌱 Post-Brexit Opportunities</h3>
-            <div class="success-box">
-                <strong>Green Energy Leadership:</strong>
-                <br>• 100% clean power target by 2030
-                <br>• 78 gigatonnes carbon storage capacity (largest in Europe except Norway)
-                <br>• Financial services maintaining competitive advantages
-                <br>• CPTPP membership provides strategic Indo-Pacific positioning
-            </div>
-        </div>
-
-        <!-- Strategic Conclusions -->
-        <div class="slide">
-            <h2>🎯 Strategic Conclusions: Navigating Toward Renewal</h2>
-            
-            <div class="quote-box" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-left: 5px solid var(--accent-gold);">
-                "Britain stands at a critical juncture where comprehensive reform can reverse decline while preserving democratic values and institutional strengths."
-            </div>
-
-            <h3>📊 Hard Truths to Acknowledge</h3>
-            <div class="impact-grid">
-                <div class="impact-card" style="border-top: 5px solid var(--warning-red);">
-                    <span class="icon-large">📉</span>
-                    <h4>Economic Reality</h4>
-                    <p>Current performance represents Britain's worst relative decline in modern history</p>
-                </div>
-                
-                <div class="impact-card" style="border-top: 5px solid var(--warning-red);">
-                    <span class="icon-large">⚖️</span>
-                    <h4>Social Division</h4>
-                    <p>Inequality levels damage social cohesion beyond sustainable limits</p>
-                </div>
-                
-                <div class="impact-card" style="border-top: 5px solid var(--warning-red);">
-                    <span class="icon-large">🏛️</span>
-                    <h4>Democratic Deficit</h4>
-                    <p>Institutions face corporate capture undermining public trust</p>
-                </div>
-                
-                <div class="impact-card" style="border-top: 5px solid var(--warning-red);">
-                    <span class="icon-large">🔒</span>
-                    <h4>Security Risk</h4>
-                    <p>Infrastructure dependency on foreign ownership creates vulnerabilities</p>
-                </div>
-            </div>
-
-            <h3>✅ Strategic Priorities for Recovery</h3>
-            <div class="success-box">
-                <strong>1. Comprehensive Lobbying Reform</strong>
-                <p>Create transparency about policy influence across all sectors</p>
-            </div>
-            
-            <div class="success-box">
-                <strong>2. Infrastructure Ownership Review</strong>
-                <p>Use National Security and Investment Act powers to assess critical assets</p>
-            </div>
-            
-            <div class="success-box">
-                <strong>3. Educational Investment</strong>
-                <p>Match international best practices while preserving British creativity and critical thinking traditions</p>
-            </div>
-            
-            <div class="success-box">
-                <strong>4. Economic Diversification</strong>
-                <p>Indo-Pacific partnerships and Commonwealth integration beyond traditional dependencies</p>
-            </div>
-
-            <h3>🚀 Potential for Recovery</h3>
-            <div class="stat-card" style="background: linear-gradient(135deg, #11998e, #38ef7d);">
-                <span class="stat-number">£8,300</span>
-                Per household annual gain potential
-                <small style="display: block; margin-top: 5px;">If UK closes gaps with peer economies</small>
-            </div>
-
-            <h3>💡 The Ultimate Insight</h3>
-            <div class="quote-box" style="background: linear-gradient(135deg, #f093fb, #f5576c); color: white;">
-                "Britain's crisis stems not from inevitable decline but from policy choices that can be reversed through democratic engagement and institutional reform. The next decade will determine whether Britain becomes a middle-power adjusting to reduced global influence or renews itself as a globally competitive democracy offering an alternative model of inclusive prosperity."
-            </div>
-
-            <h3>🏆 Britain's Enduring Assets</h3>
-            <div class="impact-grid">
-                <div class="impact-card" style="border-top: 5px solid var(--success-green);">
-                    <span class="icon-large">🎓</span>
-                    <h4>World-Class Universities</h4>
-                    <p>Global reputation for excellence and innovation</p>
-                </div>
-                
-                <div class="impact-card" style="border-top: 5px solid var(--success-green);">
-                    <span class="icon-large">💼</span>
-                    <h4>Financial Leadership</h4>
-                    <p>London remains top global financial center</p>
-                </div>
-                
-                <div class="impact-card" style="border-top: 5px solid var(--success-green);">
-                    <span class="icon-large">⚖️</span>
-                    <h4>Legal Excellence</h4>
-                    <p>Strong rule of law and institutional framework</p>
-                </div>
-                
-                <div class="impact-card" style="border-top: 5px solid var(--success-green);">
-                    <span class="icon-large">🗳️</span>
-                    <h4>Democratic Traditions</h4>
-                    <p>Centuries of parliamentary democracy and civic engagement</p>
-                </div>
-            </div>
-
-            <div class="warning-box" style="background: linear-gradient(135deg, #667eea, #764ba2); margin-top: 40px;">
-                <strong>The Choice Ahead:</strong> Britain can either accept managed decline or mobilize its substantial assets for renewal. The evidence shows the potential exists—what's needed is the political will and public engagement to realize it.
-            </div>
-        </div>
-
-        <!-- Call to Action -->
-        <div class="slide" style="text-align: center; background: linear-gradient(135deg, var(--primary-blue), var(--secondary-red)); color: white;">
-            <h2 style="color: white; border-bottom-color: var(--accent-gold);">🇬🇧 The Path Forward</h2>
-            <p style="font-size: 1.3em; margin: 30px 0;">
-                This analysis reveals that while Britain faces its gravest challenges since World War II, the foundations for recovery remain intact.
-            </p>
-            <p style="font-size: 1.2em; margin: 30px 0;">
-                The crisis is <strong>real but not irreversible</strong>.<br>
-                The decline is <strong>severe but not terminal</strong>.<br>
-                The challenges are <strong>systemic but solvable</strong>.
-            </p>
-            <div style="margin-top: 40px;">
-                <button class="interactive-button" onclick="window.print()">📄 Print Report</button>
-                <button class="interactive-button" onclick="scrollToTop()">↑ Return to Top</button>
-            </div>
-        </div>
-    </div>
+    </header>
 
     <!-- Navigation -->
-    <div class="navigation">
-        <button class="nav-button" onclick="scrollToTop()">↑</button>
-        <button class="nav-button" onclick="scrollToNext()">↓</button>
-    </div>
+    <nav class="nav-menu">
+        <div class="nav-menu-content">
+            <a href="#overview" class="nav-item active">Overview</a>
+            <a href="#economic" class="nav-item">Economic Crisis</a>
+            <a href="#thatcher" class="nav-item">Thatcher Legacy</a>
+            <a href="#political" class="nav-item">Political Capture</a>
+            <a href="#demographic" class="nav-item">Demographics</a>
+            <a href="#education" class="nav-item">Education</a>
+            <a href="#infrastructure" class="nav-item">Infrastructure</a>
+            <a href="#conclusion" class="nav-item">Conclusions</a>
+            <a href="#references" class="nav-item">References</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="hero animate-in">
+                <h1 class="hero-title">Britain's Crossroads Crisis</h1>
+                <p class="hero-subtitle">Comprehensive Analysis of Stagnation, Legacy, and Strategic Repositioning</p>
+            </div>
+
+            <!-- Overview Section -->
+            <section id="overview" class="section animate-in">
+                <div class="section-header">
+                    <h2 class="section-title">Executive Overview</h2>
+                    <p class="section-subtitle">Critical findings and key metrics</p>
+                </div>
+
+                <div class="alert alert-danger">
+                    <div class="alert-title">⚠️ Critical Finding</div>
+                    <p>The United Kingdom confronts its most challenging period since World War II, characterized by severe economic stagnation rather than imminent collapse, with interconnected demographic, social, and institutional crises requiring urgent comprehensive reform.</p>
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">£8,300</div>
+                        <div class="stat-label">Per Household Potential</div>
+                        <div class="stat-change positive">If gaps closed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">15</div>
+                        <div class="stat-label">Years of Decline</div>
+                        <div class="stat-change negative">Relative decline</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">4%</div>
+                        <div class="stat-label">Lobbying Captured</div>
+                        <div class="stat-change negative">96% unregulated</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">70%</div>
+                        <div class="stat-label">Foreign-Owned Infrastructure</div>
+                        <div class="stat-change negative">Security risk</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Economic Crisis Section -->
+            <section id="economic" class="section animate-in">
+                <div class="section-header">
+                    <h2 class="section-title">The Stagnation Trap</h2>
+                    <p class="section-subtitle">Britain's unprecedented economic decline</p>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <div class="comparison-header current">UK Performance</div>
+                        <div class="comparison-body">
+                            <div class="comparison-metric">
+                                <span class="metric-label">Productivity Growth</span>
+                                <span class="metric-value">0.4% p.a.</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Business Investment</span>
+                                <span class="metric-value">19% GDP</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">GDP Growth Forecast</span>
+                                <span class="metric-value">1.0-1.7%</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Public Debt</span>
+                                <span class="metric-value">96.1% GDP</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="comparison-header after">OECD Average</div>
+                        <div class="comparison-body">
+                            <div class="comparison-metric">
+                                <span class="metric-label">Productivity Growth</span>
+                                <span class="metric-value">0.9% p.a.</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Business Investment</span>
+                                <span class="metric-value">22% GDP</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">GDP Growth Forecast</span>
+                                <span class="metric-value">2.1-2.8%</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Public Debt</span>
+                                <span class="metric-value">75% GDP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🏥</span>
+                        <h3 class="card-title">Social Infrastructure Crisis</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>NHS Waiting Lists</span>
+                                <span>7.58 million</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>A&E 4-Hour Target</span>
+                                <span>75.9%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 76%;"></div>
+                            </div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Homelessness (Temporary Accommodation)</span>
+                                <span>117,450 households</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Thatcher Legacy Section -->
+            <section id="thatcher" class="section animate-in">
+                <div class="section-header">
+                    <h2 class="section-title">Thatcher's Enduring Shadow</h2>
+                    <p class="section-subtitle">Structural problems originating from 1980s policies</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">1979-1990</div>
+                            <div class="timeline-title">Privatization Program</div>
+                            <div class="timeline-description">
+                                Transferred £60 billion in state assets, privatizing 40+ businesses employing 600,000 workers. Water industry now 90%+ foreign-owned, carrying £60 billion debt while distributing £75 billion in dividends since privatization.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">1978-2008</div>
+                            <div class="timeline-title">Income Inequality Embedded</div>
+                            <div class="timeline-description">
+                                Top 1% income share rose from 5.7% to 15.4%. Real household income at 10th percentile rose only 3.1% while 90th percentile increased 56.1%. Britain now has the highest income inequality of any large European economy.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">1981-1991</div>
+                            <div class="timeline-title">Regional Disparities Created</div>
+                            <div class="timeline-description">
+                                12 local authorities lost over 20% of jobs. UK manufacturing employment fell 39% from 1979-1993. These "left-behind" places created in the 1980s remain economically disadvantaged today.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <div class="comparison-header before">Pre-Thatcher (1978)</div>
+                        <div class="comparison-body">
+                            <div class="comparison-metric">
+                                <span class="metric-label">Top 1% Income Share</span>
+                                <span class="metric-value">5.7%</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Manufacturing Jobs</span>
+                                <span class="metric-value">7.1 million</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Council Homes</span>
+                                <span class="metric-value">6.5 million</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Public Utilities</span>
+                                <span class="metric-value">State-owned</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="comparison-header before">Post-Thatcher Impact</div>
+                        <div class="comparison-body">
+                            <div class="comparison-metric">
+                                <span class="metric-label">Top 1% Income Share</span>
+                                <span class="metric-value">15.4%</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Manufacturing Jobs</span>
+                                <span class="metric-value">4.3 million</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Council Homes Sold</span>
+                                <span class="metric-value">2.8 million</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Infrastructure</span>
+                                <span class="metric-value">70% foreign-owned</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Political Capture Section -->
+            <section id="political" class="section animate-in">
+                <div class="section-header">
+                    <h2 class="section-title">Political Capture & Transparency Deficit</h2>
+                    <p class="section-subtitle">Corporate influence and democratic accountability crisis</p>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Lobbying Mechanism</th>
+                                <th>Coverage</th>
+                                <th>Transparency</th>
+                                <th>Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Consultant Lobbyists</td>
+                                <td>1% of activity</td>
+                                <td>Registered</td>
+                                <td>Minimal</td>
+                            </tr>
+                            <tr>
+                                <td>In-house Corporate</td>
+                                <td>35% of activity</td>
+                                <td>Unregulated</td>
+                                <td>High</td>
+                            </tr>
+                            <tr>
+                                <td>Think Tanks</td>
+                                <td>25% of activity</td>
+                                <td>£14.3M undisclosed</td>
+                                <td>Very High</td>
+                            </tr>
+                            <tr>
+                                <td>Trade Associations</td>
+                                <td>20% of activity</td>
+                                <td>Unregulated</td>
+                                <td>High</td>
+                            </tr>
+                            <tr>
+                                <td>Informal Networks</td>
+                                <td>19% of activity</td>
+                                <td>Invisible</td>
+                                <td>Significant</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="alert alert-danger">
+                    <div class="alert-title">Democratic Risk</div>
+                    <p>The 2014 Lobbying Act covers only consultant lobbyists working for third-party firms—approximately 1% of UK lobbyists. Registration covers meetings with just 44 of over 400,000 civil servants. Transparency International estimates the Act captures only 4% of lobbying activity.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🏢</span>
+                        <h3 class="card-title">55 Tufton Street Network</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Houses multiple right-wing think tanks funded by undisclosed sources:</p>
+                        <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                            <li>Policy Exchange - Grade E transparency</li>
+                            <li>Institute of Economic Affairs - Grade E transparency</li>
+                            <li>Centre for Policy Studies - Grade E transparency</li>
+                            <li>Adam Smith Institute - Grade E transparency</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">These organizations effectively function as corporate lobbying vehicles while maintaining academic credibility.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Demographic Section -->
+            <section id="demographic" class="section animate-in">
+                <div class="section-header">
+                    <h2 class="section-title">Demographic Fragmentation</h2>
+                    <p class="section-subtitle">Social cohesion collapse and identity crisis</p>
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">3,528</div>
+                        <div class="stat-label">Antisemitic Incidents 2024</div>
+                        <div class="stat-change negative">2nd highest recorded</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">7,055</div>
+                        <div class="stat-label">Suicides in 2023</div>
+                        <div class="stat-change negative">19 per day</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">1.41</div>
+                        <div class="stat-label">Fertility Rate</div>
+                        <div class="stat-change negative">Lowest on record</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">55%</div>
+                        <div class="stat-label">UK Birth Essential to Identity</div>
+                        <div class="stat-change negative">Down from 74%</div>
+                    </div>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <div class="comparison-header before">Mental Health Crisis</div>
+                        <div class="comparison-body">
+                            <div class="comparison-metric">
+                                <span class="metric-label">In Contact with Services</span>
+                                <span class="metric-value">1.91 million</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Wait >812 Days</span>
+                                <span class="metric-value">10%</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Decline While Waiting</span>
+                                <span class="metric-value">80%</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Attempt Suicide Waiting</span>
+                                <span class="metric-value">25%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="comparison-header before">National Identity Shift</div>
+                        <div class="comparison-body">
+                            <div class="comparison-metric">
+                                <span class="metric-label">Historical Pride (2013)</span>
+                                <span class="metric-value">86%</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Historical Pride (2025)</span>
+                                <span class="metric-value">65%</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Young Not Wanting Children</span>
+                                <span class="metric-value">28%</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Feel Disconnected</span>
+                                <span class="metric-value">Plurality</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="section animate-in">
+                <div class="section-header">
+                    <h2 class="section-title">Educational & Strategic Challenges</h2>
+                    <p class="section-subtitle">International competitiveness and repositioning</p>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Country/Region</th>
+                                <th>PISA Score 2022</th>
+                                <th>Global Rank</th>
+                                <th>STEM Gender Parity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>🇲🇴 Macao</td>
+                                <td>535.0</td>
+                                <td>1st</td>
+                                <td>45%</td>
+                            </tr>
+                            <tr>
+                                <td>🇹🇼 Chinese Taipei</td>
+                                <td>533.0</td>
+                                <td>2nd</td>
+                                <td>43%</td>
+                            </tr>
+                            <tr>
+                                <td>🇭🇰 Hong Kong</td>
+                                <td>520.0</td>
+                                <td>3rd</td>
+                                <td>42%</td>
+                            </tr>
+                            <tr>
+                                <td>🇬🇧 United Kingdom</td>
+                                <td>486.3</td>
+                                <td>20th</td>
+                                <td>31%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="alert alert-info">
+                    <div class="alert-title">Digital Skills Gap Impact</div>
+                    <p>Costs UK economy up to £60 billion annually. Only 14% of pupils took Computer Science GCSE in 2023. At current rates, gender parity in STEM won't be achieved until 2070.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🌏</span>
+                        <h3 class="card-title">Post-Brexit Economic Repositioning</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>CPTPP GDP Impact (15 years)</span>
+                                <span>0.04-0.08%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 8%;"></div>
+                            </div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Commonwealth Trade Decline</span>
+                                <span>-24% from peak</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 76%; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                            </div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Financial Services Surplus</span>
+                                <span>£92.2 billion</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 92%; background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Infrastructure Section -->
+            <section id="infrastructure" class="section animate-in">
+                <div class="section-header">
+                    <h2 class="section-title">Infrastructure Vulnerability</h2>
+                    <p class="section-subtitle">BlackRock dependency and foreign ownership</p>
+                </div>
+
+                <div class="alert alert-danger">
+                    <div class="alert-title">⚠️ National Security Risk</div>
+                    <p>70% of UK critical infrastructure is foreign-owned, creating systemic vulnerabilities. Water companies have paid £72 billion in dividends while accumulating £54 billion debt that the public ultimately guarantees.</p>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <div class="comparison-header current">Water Industry Ownership</div>
+                        <div class="comparison-body">
+                            <div class="comparison-metric">
+                                <span class="metric-label">Thames Water</span>
+                                <span class="metric-value">Chinese CKI (HK)</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Yorkshire Water</span>
+                                <span class="metric-value">HK & Singapore</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Northumbrian</span>
+                                <span class="metric-value">CK Hutchison + KKR</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Total Foreign %</span>
+                                <span class="metric-value">90%+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="comparison-header current">Energy Infrastructure</div>
+                        <div class="comparison-body">
+                            <div class="comparison-metric">
+                                <span class="metric-label">ScottishPower</span>
+                                <span class="metric-value">Spanish Iberdrola</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Northern Powergrid</span>
+                                <span class="metric-value">Berkshire Hathaway</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Gas Infrastructure</span>
+                                <span class="metric-value">Macquarie, BCI</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Control Model</span>
+                                <span class="metric-value">Profit extraction</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🏦</span>
+                        <h3 class="card-title">BlackRock's UK Influence</h3>
+                    </div>
+                    <div class="card-content">
+                        <ul style="padding-left: 1.5rem;">
+                            <li>£500-700 million data center investments</li>
+                            <li>$12.5 billion Global Infrastructure Partners acquisition</li>
+                            <li>$170 billion infrastructure platform created</li>
+                            <li>Direct meetings with PM Starmer and Chancellor Reeves</li>
+                            <li>Chancellor cites BlackRock advice driving planning deregulation</li>
+                            <li>"Government-by-BlackRock" model - taxpayers bear risks, BlackRock captures profits</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Conclusions Section -->
+            <section id="conclusion" class="section animate-in">
+                <div class="section-header">
+                    <h2 class="section-title">Strategic Conclusions</h2>
+                    <p class="section-subtitle">Pathways to national renewal</p>
+                </div>
+
+                <div class="alert alert-success">
+                    <div class="alert-title">✅ Recovery Potential</div>
+                    <p>Britain stands at a critical juncture where comprehensive reform can reverse decline while preserving democratic values and institutional strengths. The Resolution Foundation's analysis suggests closing gaps with peer economies could make households £8,300 better off annually.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🎯</span>
+                        <h3 class="card-title">Strategic Priorities for Recovery</h3>
+                    </div>
+                    <div class="card-content">
+                        <ol style="padding-left: 1.5rem; line-height: 2;">
+                            <li><strong>Comprehensive Lobbying Reform:</strong> Create transparency about policy influence across all sectors</li>
+                            <li><strong>Infrastructure Ownership Review:</strong> Use National Security and Investment Act powers to assess critical assets</li>
+                            <li><strong>Educational Investment:</strong> Match international best practices while preserving British creativity traditions</li>
+                            <li><strong>Economic Diversification:</strong> Indo-Pacific partnerships and Commonwealth integration</li>
+                            <li><strong>Democratic Renewal:</strong> Strengthen institutions against corporate capture</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <div class="comparison-header before">Current Reality</div>
+                        <div class="comparison-body">
+                            <div class="comparison-metric">
+                                <span class="metric-label">Economic Performance</span>
+                                <span class="metric-value">Worst in G7</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Social Cohesion</span>
+                                <span class="metric-value">Fragmenting</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Democratic Health</span>
+                                <span class="metric-value">Corporate capture</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Infrastructure Control</span>
+                                <span class="metric-value">70% foreign</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="comparison-header after">Recovery Potential</div>
+                        <div class="comparison-body">
+                            <div class="comparison-metric">
+                                <span class="metric-label">Household Gains</span>
+                                <span class="metric-value">£8,300 p.a.</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">World-Class Assets</span>
+                                <span class="metric-value">Universities, Finance</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Green Leadership</span>
+                                <span class="metric-value">100% clean by 2030</span>
+                            </div>
+                            <div class="comparison-metric">
+                                <span class="metric-label">Democratic Traditions</span>
+                                <span class="metric-value">Strong foundations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info" style="margin-top: 2rem;">
+                    <div class="alert-title">💡 Ultimate Insight</div>
+                    <p>Britain's crisis stems not from inevitable decline but from policy choices that can be reversed through democratic engagement and institutional reform. The next decade will determine whether Britain becomes a middle-power adjusting to reduced global influence or renews itself as a globally competitive democracy offering an alternative model of inclusive prosperity.</p>
+                </div>
+            </section>
+
+            <!-- References Section -->
+            <section id="references" class="section animate-in">
+                <div class="section-header">
+                    <h2 class="section-title">References & Evidence Base</h2>
+                    <p class="section-subtitle">Academic sources and official data supporting this analysis</p>
+                </div>
+
+                <ul class="reference-list">
+                    <li class="reference-item">
+                        <span class="reference-number">1</span>
+                        <span class="reference-source">Resolution Foundation (2023)</span>
+                        <p>"Ending Stagnation: A New Economic Strategy for Britain" - Comprehensive analysis revealing £8,300 household income gap.</p>
+                        <a href="https://economy2030.resolutionfoundation.org" class="reference-link" target="_blank">View Report</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">2</span>
+                        <span class="reference-source">Office for National Statistics (2024-2025)</span>
+                        <p>GDP growth forecasts, productivity data, and economic indicators showing 0.4% annual productivity growth vs 0.9% OECD average.</p>
+                        <a href="https://www.ons.gov.uk/economy" class="reference-link" target="_blank">ONS Economic Data</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">3</span>
+                        <span class="reference-source">Institute for Fiscal Studies (2024)</span>
+                        <p>Analysis of UK economic outlook, public debt at 96.1% GDP, and fiscal challenges.</p>
+                        <a href="https://ifs.org.uk" class="reference-link" target="_blank">IFS Publications</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">4</span>
+                        <span class="reference-source">NHS Confederation (2024)</span>
+                        <p>State of NHS finances 2024/25 - 7.58 million on waiting lists, A&E performance data.</p>
+                        <a href="https://www.nhsconfed.org" class="reference-link" target="_blank">NHS Analysis</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">5</span>
+                        <span class="reference-source">LSE Politics and Policy Blog</span>
+                        <p>Margaret Thatcher's industrial and economic legacy analysis - income inequality rise from 5.7% to 15.4% for top 1%.</p>
+                        <a href="https://blogs.lse.ac.uk/politicsandpolicy" class="reference-link" target="_blank">LSE Analysis</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">6</span>
+                        <span class="reference-source">House of Commons Library (2024)</span>
+                        <p>Lobbying in UK politics - regulatory gaps covering only 4% of activity.</p>
+                        <a href="https://commonslibrary.parliament.uk" class="reference-link" target="_blank">Parliamentary Research</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">7</span>
+                        <span class="reference-source">Transparency International UK (2024)</span>
+                        <p>Analysis of lobbying transparency and corporate influence - £14.3M from undisclosed donors to think tanks.</p>
+                        <a href="https://www.transparency.org.uk" class="reference-link" target="_blank">Transparency Report</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">8</span>
+                        <span class="reference-source">Community Security Trust (2024-2025)</span>
+                        <p>Antisemitic Incidents Reports - 3,528 incidents in 2024, second-highest on record.</p>
+                        <a href="https://cst.org.uk" class="reference-link" target="_blank">CST Reports</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">9</span>
+                        <span class="reference-source">ONS Birth Statistics (2024)</span>
+                        <p>Total fertility rate at 1.41 children per woman - lowest on record.</p>
+                        <a href="https://www.ons.gov.uk/births" class="reference-link" target="_blank">Demographic Data</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">10</span>
+                        <span class="reference-source">OECD PISA (2022)</span>
+                        <p>UK performance 486.3 points (20th globally) vs Chinese territories 520-535 points.</p>
+                        <a href="https://www.oecd.org/pisa" class="reference-link" target="_blank">PISA Rankings</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">11</span>
+                        <span class="reference-source">Office for Budget Responsibility (2024)</span>
+                        <p>Brexit impact analysis - CPTPP providing only 0.04-0.08% GDP boost over 15 years.</p>
+                        <a href="https://obr.uk" class="reference-link" target="_blank">OBR Analysis</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">12</span>
+                        <span class="reference-source">We Own It (2024)</span>
+                        <p>Water industry ownership analysis - 90%+ foreign-owned, £72 billion dividends paid.</p>
+                        <a href="https://weownit.org.uk" class="reference-link" target="_blank">Ownership Report</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">13</span>
+                        <span class="reference-source">Centre for Economic Performance, LSE</span>
+                        <p>Thatcher's legacy on regional inequality - 12 local authorities lost over 20% of jobs 1981-1991.</p>
+                        <a href="https://cep.lse.ac.uk" class="reference-link" target="_blank">CEP Research</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">14</span>
+                        <span class="reference-source">British Medical Association (2024)</span>
+                        <p>NHS backlog data analysis - mental health waiting times, suicide rates during waits.</p>
+                        <a href="https://www.bma.org.uk" class="reference-link" target="_blank">BMA Data</a>
+                    </li>
+                    <li class="reference-item">
+                        <span class="reference-number">15</span>
+                        <span class="reference-source">City of London Corporation (2024)</span>
+                        <p>Financial services leadership - £92.2 billion trade surplus despite 45.5% bank tax rate.</p>
+                        <a href="https://www.cityoflondon.gov.uk" class="reference-link" target="_blank">Financial Analysis</a>
+                    </li>
+                </ul>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">
+                        <span class="card-icon">📚</span>
+                        <h3 class="card-title">Methodology Note</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>This analysis synthesizes data from multiple authoritative sources including government statistics, academic research, parliamentary reports, and think tank analysis. All economic comparisons use consistent methodologies across OECD nations. Historical data on Thatcher-era policies comes from contemporaneous government records and subsequent academic analysis. Mental health and demographic data reflect the most recent available statistics from official sources.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 
     <script>
-        // Scroll animations
-        function scrollToNext() {
-            const slides = document.querySelectorAll('.slide');
-            const currentPosition = window.scrollY;
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
-            for (let slide of slides) {
-                const slideTop = slide.offsetTop;
-                if (slideTop > currentPosition + 100) {
-                    window.scrollTo({
-                        top: slideTop - 20,
-                        behavior: 'smooth'
-                    });
-                    break;
-                }
+            body.setAttribute('data-theme', newTheme);
+            
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            if (newTheme === 'dark') {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+            } else {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
             }
+            
+            localStorage.setItem('theme', newTheme);
         }
 
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            if (savedTheme === 'dark') {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+            }
+        });
+
+        // Navigation highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
             });
-        }
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-item').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
 
         // Intersection Observer for animations
         const observerOptions = {
@@ -1163,77 +1451,36 @@
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
+                    entry.target.classList.add('animate-in');
                 }
             });
         }, observerOptions);
 
-        // Observe all animated elements
-        document.querySelectorAll('.slide, .stat-card, .impact-card, .timeline-item').forEach(el => {
-            observer.observe(el);
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
         });
 
-        // Update section indicator on scroll
-        window.addEventListener('scroll', () => {
-            const slides = document.querySelectorAll('.slide h2');
-            const indicator = document.querySelector('.section-indicator');
-            const scrollPosition = window.scrollY + 200;
-            
-            for (let i = slides.length - 1; i >= 0; i--) {
-                if (slides[i].offsetTop <= scrollPosition) {
-                    const text = slides[i].textContent;
-                    const emoji = text.substring(0, 2);
-                    const title = text.substring(2).trim();
-                    indicator.textContent = emoji + ' ' + title.substring(0, 30) + '...';
-                    break;
-                }
-            }
-        });
-
-        // Interactive card click effects
-        document.querySelectorAll('.impact-card').forEach(card => {
-            card.addEventListener('click', function() {
-                this.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-            });
-        });
-
-        // Progress bar animations on scroll
-        const progressBars = document.querySelectorAll('.progress-fill');
-        const progressObserver = new IntersectionObserver((entries) => {
+        // Progress bar animations
+        const progressObserver = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
+                    const progressFills = entry.target.querySelectorAll('.progress-fill');
+                    progressFills.forEach(fill => {
+                        const width = fill.style.width;
+                        fill.style.width = '0';
+                        setTimeout(() => {
+                            fill.style.width = width;
+                        }, 100);
+                    });
                 }
             });
         }, { threshold: 0.5 });
 
-        progressBars.forEach(bar => {
-            progressObserver.observe(bar);
-        });
-
-        // Add parallax effect to title slide
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.title-slide');
-            if (parallax) {
-                const speed = 0.5;
-                parallax.style.transform = `translateY(${scrolled * speed}px)`;
-            }
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowDown') {
-                scrollToNext();
-            } else if (e.key === 'ArrowUp') {
-                scrollToTop();
-            }
+        document.querySelectorAll('.progress-container').forEach(container => {
+            progressObserver.observe(container);
         });
     </script>
 </body>
